@@ -79,5 +79,44 @@ describe Tennis::Player do
         expect(player.score).to eq('forty')
       end
     end
+
+    context 'when points are 3 or greater' do
+      context 'and player scores are even' do
+        it 'returns deuce' do 
+          player.points = 4
+          player.opponent.points = 4
+
+          expect(player.score).to eq('deuce')
+        end
+      end
+      
+      context 'and one player has one more point than the other' do
+        it "returns ad opponent" do 
+          player.points = 4
+          player.opponent.points = 5 
+
+          expect(player.score).to eq("ad #{player.opponent}")
+        end
+      end
+    end
+    context 'When points are 4 or higher and one player has two more points than the other' do
+      it "returns player1 wins" do 
+        player.points = 7
+        player.opponent.points = 5 
+
+        expect(player.score).to eq("player1 wins!")
+      end
+    end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
