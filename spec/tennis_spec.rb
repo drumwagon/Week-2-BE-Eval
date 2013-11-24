@@ -91,11 +91,19 @@ describe Tennis::Player do
       end
       
       context 'and one player has one more point than the other' do
-        it "returns ad opponent" do 
+        it "returns ad opponent" do
+          # I really want "returns ad #{leading player}" at any point condition.
           player.points = 4
           player.opponent.points = 5 
 
-          expect(player.score).to eq("ad #{player.opponent}")
+          expect(player.score).to eq("ad opponent")
+        end
+        it "returns ad player1" do
+          # I really want "returns ad #{leading player}" at any point condition.
+          player.points = 6
+          player.opponent.points = 5 
+
+          expect(player.score).to eq("ad player1")
         end
       end
     end
@@ -105,6 +113,12 @@ describe Tennis::Player do
         player.opponent.points = 5 
 
         expect(player.score).to eq("player1 wins!")
+      end
+      it "returns opponent wins" do 
+        player.points = 3
+        player.opponent.points = 5 
+
+        expect(player.score).to eq("opponent wins!")
       end
     end
   end

@@ -42,10 +42,12 @@ module Tennis
       return 'love' if @points == 0
       return 'fifteen' if @points == 1
       return 'thirty' if @points == 2
-      return 'forty' if @points == 3
+      return 'forty' if @points == 3 && @opponent.points < 3 || @opponent.points == 3 && @points < 3
       return 'deuce' if @points >= 3 && @opponent.points == @points
-      return "ad #{@opponent}" if @points >= 3 && @opponent.points > @points
+      return "ad opponent" if @points >= 3 && @opponent.points == @points + 1
+      return "ad player1" if @points >= 3 && @points == @opponent.points + 1
       return "player1 wins!" if @points > 3 && @points > @opponent.points + 1
+      return "opponent wins!" if @opponent.points > 3 && @opponent.points > @points + 1
     end
   end
 end
